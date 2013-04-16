@@ -1,0 +1,28 @@
+{
+    "name": "chub/mercurial-manager",
+    "type": "library",
+    "description": "PHP class to get info about mercurial (hg) repository",
+    "keywords": ["hg repository mercurial php"],
+    "homepage": "https://github.com/ChubV/MercurialManager",
+    "authors": [
+        {
+            "name": "Vladimir Chub",
+            "email": "v@chub.com.ua",
+            "homepage": "https://github.com/ChubV"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/process": "*"
+    },
+    "autoload": {
+        "psr-0": { "ChubProduction\\MercurialManager": "" }
+    },
+    "target-dir": "ChubProduction/MercurialManager",
+    "minimum-stability": "alpha",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
