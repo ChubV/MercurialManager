@@ -16,7 +16,9 @@ Usage
 require_once 'vendor/autoload.php';
 use ChubProduction\MercurialManager\MercurialManager;
 
+// Current directory
 $m = new MercurialManager();
+// Tip revision node
 $node = $m->getNode();
 
 echo $node->getDate()->format('d.m.Y H:i:s'), "\n";
