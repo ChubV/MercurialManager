@@ -23,4 +23,6 @@ $node = $m->getNode();
 
 echo $node->getDate()->format('d.m.Y H:i:s'), "\n";
 echo $node->getAuthor();
+// Get modified files
+var_dump($node->getFiles('M'));
 ```
