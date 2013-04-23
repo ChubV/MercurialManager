@@ -13,6 +13,7 @@ class MercurialNode
 	private $hash;
 	private $init = false;
 	private $info;
+	private $files = null;
 
 	/**
 	 * @param MercurialManager $manager
@@ -44,6 +45,44 @@ class MercurialNode
 		$this->info = $infoArray;
 
 		$this->init = true;
+	}
+
+	/**
+	 * Get the list of files
+	 *
+	 * M = modified
+	 * A = added
+	 * R = removed
+	 * C = clean
+	 * ! = missing
+	 * @param mixed $modifier
+	 *
+	 * @return array
+	 */
+	public function getFiles($modifier = null)
+	{
+		if (!in_array($modifier, array('M', 'A', 'R', 'C', '!', null))) {
+			return array();
+		}
+
+		if ($this->files) {
+			if ($modifier === null) {
+				return array_keys($this->files);
+			}
+
+			return array_keys(array_filter($this->files, function ($var) use ($modifier) {
+				return $var == $modifier;
+			}));
+		}
+
+		$out = $this->manager->run('status --change ' . $this->hash);
+		$list = explode("\n", $out);
+		$this->files = array();
+		foreach ($list as $rec) {
+			$this->files[substr($rec, 2)] = substr($rec, 0, 1);
+		}
+
+		return $this->getFiles($modifier);
 	}
 
 	/**
