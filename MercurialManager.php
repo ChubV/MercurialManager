@@ -78,7 +78,7 @@ class MercurialManager
 	public function run($cmd)
 	{
 		if ($this->path) {
-			$cmd = '--cwd="' . $this->path . '" ' . $cmd;
+			$cmd = '--cwd "' . $this->path . '" ' . $cmd;
 		}
 
 		$cmd = 'hg ' . $cmd;
